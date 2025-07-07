@@ -21,7 +21,7 @@ class Database:
 
     @classmethod
     def get_collection(cls, collection_name: str):
-        if not cls.db:
+        if cls.db is None:
             raise RuntimeError("Database is not initialized. Call connect_to_mongo() first.")
         return cls.db[collection_name]
 

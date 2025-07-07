@@ -3,12 +3,17 @@ from datetime import datetime
 from bson import ObjectId
 from fastapi import HTTPException, status
 from ..models.user import UserInDB, UserCreate, UserUpdate, User
-from app.core.security import get_password_hash, verify_password
-from ..db.session import get_collection
+from app.db.session import get_collection
 
 class CRUDUser:
     def __init__(self):
-        self.collection = get_collection("users")
+        self._collection = None
+    
+    @property
+    def collection(self):
+        if self._collection is None:
+            self._collection = get_collection("users")
+        return self._collection
 
     async def get_by_email(self, email: str) -> Optional[UserInDB]:
         user_data = await self.collection.find_one({"email": email})
@@ -34,6 +39,7 @@ class CRUDUser:
             )
         
         # Hash the password
+        from app.core.security import get_password_hash
         hashed_password = get_password_hash(user_in.password)
         
         # Create user data
@@ -65,6 +71,7 @@ class CRUDUser:
         
         # If password is being updated, hash it
         if "password" in update_data:
+            from app.core.security import get_password_hash
             hashed_password = get_password_hash(update_data["password"])
             del update_data["password"]
             update_data["hashed_password"] = hashed_password
@@ -86,6 +93,7 @@ class CRUDUser:
         user = await self.get_by_email(email)
         if not user:
             return None
+        from app.core.security import verify_password
         if not verify_password(password, user.hashed_password):
             return None
         return user
@@ -97,5 +105,5 @@ class CRUDUser:
         result = await self.collection.delete_one({"_id": ObjectId(user_id)})
         return result.deleted_count > 0
 
-# Create a singleton instance
+# Create a default instance for easy importing
 user = CRUDUser()
