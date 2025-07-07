@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
-from .core.config import settings
-from .db.session import init_db, close_db
-from .api.v1.router import api_router
+from app.core.config import settings
+from app.db.session import init_db, close_db
+from app.api.v1.router import api_router
 import logging
 
 # Configure logging

@@ -4,9 +4,9 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, HTTPBearer, HTTPAuthorizationCredentials
-from ..core.config import settings
-from ..models.user import UserInDB
-from ..crud.crud_user import user as crud_user
+from app.core.config import settings
+from app.models.user import UserInDB
+from app.crud.crud_user import user as crud_user
 
 # Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

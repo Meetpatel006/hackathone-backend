@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from typing import Optional, BinaryIO, Dict, Any
 from azure.storage.blob import BlobServiceClient, BlobSasPermissions, generate_blob_sas
 from azure.core.exceptions import ResourceExistsError, ResourceNotFoundError
-from ...core.config import settings
+from app.core.config import settings
 
 class AzureBlobStorage:
     def __init__(self):

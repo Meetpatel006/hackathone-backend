@@ -8,9 +8,9 @@ from app.core.security import (
     create_refresh_token,
     get_password_hash,
 )
-from ...core.config import settings
-from ...crud.crud_user import user as crud_user
-from ...schemas.token import (
+from app.core.config import settings
+from app.crud.crud_user import user as crud_user
+from app.schemas.token import (
     Token,
     AuthResponse,
     LoginRequest,
@@ -18,7 +18,7 @@ from ...schemas.token import (
     PasswordResetRequest,
     PasswordResetConfirm,
 )
-from ...models.user import UserCreate, UserInDB
+from app.models.user import UserCreate, UserInDB
 
 router = APIRouter()
 

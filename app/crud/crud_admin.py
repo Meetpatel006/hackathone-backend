@@ -1,6 +1,6 @@
 from app.models.user import User
 from app.models.enums import UserRole
-from .base import CRUDBase
+from app.crud.base import CRUDBase
 
 class CRUDAdmin(CRUDBase):
     async def list_users(self, skip: int = 0, limit: int = 100, role: str = None) -> list:

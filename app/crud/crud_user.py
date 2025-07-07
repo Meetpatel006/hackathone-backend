@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any
 from datetime import datetime
 from bson import ObjectId
 from fastapi import HTTPException, status
-from ..models.user import UserInDB, UserCreate, UserUpdate, User
+from app.models.user import UserInDB, UserCreate, UserUpdate, User
 from app.db.session import get_collection
 
 class CRUDUser:

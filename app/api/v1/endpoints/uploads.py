@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status
 from typing import Optional, List
 import magic
 from app.core.security import get_current_active_user
-from ...core.config import settings
-from ...services.storage import storage
-from ...models.user import UserInDB
+from app.core.config import settings
+from app.services.storage import storage
+from app.models.user import UserInDB
 from datetime import datetime
 
 router = APIRouter()

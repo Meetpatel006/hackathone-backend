@@ -4,8 +4,9 @@ import psutil
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
-from ...core.config import settings
-from ...db.session import Database
+from app.core.config import settings
+from app.db.session import Database
+from app.services.storage import storage
 
 router = APIRouter()
 
@@ -71,7 +72,6 @@ async def storage_health_check():
     """
     try:
         # Test storage connection by listing containers
-        from ...services.storage import storage
         
         # This will raise an exception if the connection fails
         await storage.container_client.get_container_properties()

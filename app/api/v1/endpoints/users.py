@@ -4,8 +4,8 @@ from typing import List, Optional
 from bson import ObjectId
 
 from app.core.security import get_current_active_user, get_admin_user
-from ...models.user import User, UserUpdate, UserInDB
-from ...crud.crud_user import user as crud_user
+from app.models.user import User, UserUpdate, UserInDB
+from app.crud.crud_user import user as crud_user
 
 router = APIRouter()
 

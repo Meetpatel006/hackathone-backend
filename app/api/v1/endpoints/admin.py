@@ -4,10 +4,10 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from bson import ObjectId
 
 from app.core.security import get_current_active_user, get_current_admin_user
-from ...models.user import User, UserInDB, UserUpdate
-from ...crud.crud_user import user as crud_user
-from ...schemas.base import ResponseModel, ListResponse
-from ...schemas.user import UserResponse, UserListResponse
+from app.models.user import User, UserInDB, UserUpdate
+from app.crud.crud_user import user as crud_user
+from app.schemas.base import ResponseModel, ListResponse
+from app.schemas.user import UserResponse, UserListResponse
 
 router = APIRouter()
 
