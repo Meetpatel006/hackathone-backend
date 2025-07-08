@@ -7,7 +7,7 @@ from app.core.security import get_current_active_user, get_current_admin_user
 from app.models.user import User, UserInDB, UserUpdate
 from app.crud.crud_user import user as crud_user
 from app.schemas.base import ResponseModel, ListResponse
-from app.schemas.user import UserResponse, UserListResponse
+from app.schemas.user import UserResponse
 
 router = APIRouter()
 
@@ -19,7 +19,7 @@ def standard_response(success: bool, data: any = None, message: str = "", status
         "timestamp": datetime.utcnow().isoformat() + "Z"
     }
 
-@router.get("/users/", response_model=UserListResponse)
+@router.get("/users/", response_model=ListResponse)
 async def admin_list_users(
     skip: int = 0,
     limit: int = 100,

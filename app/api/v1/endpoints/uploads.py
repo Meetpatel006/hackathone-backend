@@ -1,7 +1,6 @@
 import os
 from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, status
 from typing import Optional, List
-import magic
 from app.core.security import get_current_active_user
 from app.core.config import settings
 from app.services.storage import storage
@@ -9,9 +8,6 @@ from app.models.user import UserInDB
 from datetime import datetime
 
 router = APIRouter()
-
-# Initialize magic for file type detection
-mime = magic.Magic(mime=True)
 
 def standard_response(success: bool, data: any = None, message: str = "", status_code: int = 200):
     return {
@@ -41,24 +37,17 @@ async def upload_file(
             detail=f"File too large. Maximum size is {settings.MAX_UPLOAD_SIZE} bytes"
         )
     
-    # Read the file content to determine MIME type
+    # Read the file content (no MIME type detection)
     file_content = await file.read()
-    content_type = mime.from_buffer(file_content)
-    
-    # Validate file type
-    if content_type not in settings.ALLOWED_FILE_TYPES:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"File type {content_type} is not allowed"
-        )
     
     # Upload the file
     try:
-        # Create a file-like object from the bytes
         from io import BytesIO
         file_obj = BytesIO(file_content)
         
-        # Upload to Azure Blob Storage
+        # Use the file's provided content_type or a default
+        content_type = file.content_type or "application/octet-stream"
+        
         result = await storage.upload_file(
             file_data=file_obj,
             filename=file.filename,
