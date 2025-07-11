@@ -1,22 +1,16 @@
 from datetime import timedelta, datetime
-from fastapi import APIRouter, Depends, HTTPException, status, Request
-from fastapi.security import OAuth2PasswordRequestForm
+from fastapi import APIRouter, HTTPException, status, Request
 from typing import Any
 
 from app.core.security import (
     create_access_token,
     create_refresh_token,
-    get_password_hash,
 )
 from app.core.config import settings
 from app.crud.crud_user import user as crud_user
 from app.schemas.token import (
-    Token,
-    AuthResponse,
     LoginRequest,
     RegisterRequest,
-    PasswordResetRequest,
-    PasswordResetConfirm,
 )
 from app.models.user import UserCreate, UserInDB
 
