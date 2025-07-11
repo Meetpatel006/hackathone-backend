@@ -34,13 +34,6 @@ class Settings(BaseSettings):
     
     # File upload settings
     MAX_UPLOAD_SIZE: int = 50 * 1024 * 1024  # 50MB
-    ALLOWED_FILE_TYPES: list[str] = [
-        "image/jpeg", "image/png", "image/gif",
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/zip", "application/x-tar"
-    ]
     
     # Rate limiting
     RATE_LIMIT: int = 60

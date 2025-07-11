@@ -90,7 +90,6 @@ AZURE_STORAGE_ACCOUNT_KEY=your-azure-key
 AZURE_STORAGE_CONTAINER=uploads
 
 MAX_UPLOAD_SIZE=52428800
-ALLOWED_FILE_TYPES=["jpg", "png", "pdf"]  # Must be a valid JSON array
 ```
 
 ### 4. Initialize the Database

@@ -681,7 +681,6 @@ Storage health check.
 
 ### File Upload Errors
 - `FILE_TOO_LARGE` - File size exceeds limit
-- `INVALID_FILE_TYPE` - File type not allowed
 - `STORAGE_QUOTA_EXCEEDED` - User storage quota exceeded
 
 ## Rate Limiting
