@@ -88,7 +88,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserInDB:
         # Get user from database
         user = await crud_user.get(user_id)
         if user is None:
-            raise credentials_exn
+            raise credentials_exception
             
         return user
         
