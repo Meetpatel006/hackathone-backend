@@ -17,7 +17,7 @@ class AdminUserResponse(BaseModel):
     class Config:
         json_encoders = {ObjectId: str}
         allow_population_by_field_name = True
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": "507f1f77bcf86cd799439011",
                 "email": "admin@example.com",
@@ -38,7 +38,7 @@ class AdminUserListResponse(BaseModel):
     limit: int
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "items": [
                     {

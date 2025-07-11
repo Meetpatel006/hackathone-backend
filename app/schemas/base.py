@@ -14,7 +14,7 @@ class ResponseModel(BaseModel, Generic[T]):
 
     class Config:
         json_encoders = {ObjectId: str}
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "success": True,
                 "data": {},
@@ -35,7 +35,7 @@ class ListResponse(ResponseModel[T], Generic[T]):
     )
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "success": True,
                 "data": {
