@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any, Union
-from jose import JWTError, jwt
+from jose import JWTError, JOSEError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, HTTPBearer, HTTPAuthorizationCredentials
@@ -58,7 +58,7 @@ def create_access_token_from_refresh_token(refresh_token: str) -> str:
         return create_access_token(
             data={"sub": user_id}, expires_delta=access_token_expires
         )
-    except JWTError:
+    except JOSEError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
@@ -92,7 +92,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserInDB:
             
         return user
         
-    except JWTError as e:
+    except JOSEError as e:
         raise credentials_exception
 
 async def get_current_active_user(current_user: UserInDB = Depends(get_current_user)) -> UserInDB:
