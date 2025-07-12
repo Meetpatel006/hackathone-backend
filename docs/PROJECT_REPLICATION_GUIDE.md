@@ -2,14 +2,9 @@
 
 This guide provides instructions on how to manually replicate this project in a new repository, ensuring every file and commit reflects your work. This is particularly useful for hackathon projects where you need to demonstrate your individual contributions.
 
-## Initial Setup
+## Setup
 
-1.  Create a new empty directory for your project.
-2.  Initialize a new Git repository:
-    ```bash
-    git init
-    ```
-3.  Create a `.gitignore` file to prevent unnecessary files from being tracked.
+Create a `.gitignore` file to prevent unnecessary files from being tracked.
 
 ## Folder and File Structure
 
